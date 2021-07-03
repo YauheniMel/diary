@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/YauheniMel/diary/issues"
   },
-  "homepage": "https://github.com/YauheniMel/diary#readme"
+  "homepage": "https://github.com/YauheniMel/diary#readme",
+  "devDependencies": {
+    "grunt-webpack": "^4.0.3",
+    "webpack": "^5.42.0",
+    "webpack-cli": "^4.7.2"
+  }
 }
