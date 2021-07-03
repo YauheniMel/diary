@@ -1,0 +1,24 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "diaryApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YauheniMel/diary.git"
+  },
+  "keywords": [
+    "js",
+    "scss",
+    "webpack"
+  ],
+  "author": "Melnik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YauheniMel/diary/issues"
+  },
+  "homepage": "https://github.com/YauheniMel/diary#readme"
+}
