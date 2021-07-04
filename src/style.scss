@@ -1,0 +1,10 @@
+.container {
+  max-width: 600px;
+  background: red;
+}
+.list {
+
+  &__item {
+    color: blue;
+  }
+}
