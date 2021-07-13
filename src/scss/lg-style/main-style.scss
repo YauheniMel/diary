@@ -1,0 +1,12 @@
+.main {
+  background: rgb(187, 176, 144);
+  &__section {
+    height: 90vh;
+    background: rgb(240, 230, 202);
+  }
+
+  &__date {
+    padding: 10px;
+    text-align: right;
+  }
+}
