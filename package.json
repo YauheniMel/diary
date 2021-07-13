@@ -18,7 +18,8 @@
   "keywords": [
     "js",
     "scss",
-    "webpack"
+    "webpack",
+    "nodejs"
   ],
   "author": "Melnik",
   "license": "ISC",

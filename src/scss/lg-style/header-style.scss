@@ -1,0 +1,41 @@
+.header {
+  background: rgb(211, 152, 42);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &__list {
+    width: 65%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__item {
+    font-size: 18px;
+    text-align: center;
+    width: 33%;
+  }
+
+  &__link {
+    padding: 15px 0;
+    display: block;
+
+    &:hover {
+      background: rgb(226, 188, 117);
+    }
+  }
+}
+
+.form-search {
+  width: 35%;
+  display: inline-block;
+  align-self: center;
+
+  &__input {
+  }
+
+  &__button {
+  }
+}
