@@ -2,8 +2,13 @@
 @import "./scss/lg-style/header-style.scss";
 @import "./scss/lg-style/main-style.scss";
 @import "./scss/lg-style/footer-style.scss";
+@import "./scss/lg-style/card-style.scss";
 
 .container {
   max-width: 1000px;
   margin: auto;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }

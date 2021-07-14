@@ -1,0 +1,42 @@
+.card {
+  width: 200px;
+  min-height: 250px;
+
+  background: url(~./scss/images/boat.jpg) no-repeat;
+  background-size: contain;
+  background-position-y: center;
+
+  position: relative;
+
+  &__head {
+
+  }
+
+  &__description {
+  }
+
+  &__color {
+    border-radius: 50%;
+    border: 2px solid darkgrey;
+    opacity: 0.3;
+
+    width: 30px;
+    height: 30px;
+    line-height: 60px;
+    text-align: center;
+
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+    &:hover {
+      background: rgba(201, 199, 199, 0.5);
+      opacity: 1;
+    }
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 3px;
+  }
+}
