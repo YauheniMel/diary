@@ -1,5 +1,5 @@
 .header {
-  background: rgb(224, 186, 113);
+  background: rgb(26, 138, 123);
 }
 
 .nav {
@@ -27,7 +27,7 @@
     display: block;
 
     &:hover {
-      background: rgb(252, 240, 219);
+      background: rgb(212, 212, 212);
     }
 
     &:hover+.form-memory {
@@ -64,7 +64,8 @@
   position       : absolute;
   justify-content: space-between;
 
-  &__left-section {}
+  &__left-section {
+  }
 
   &__title {
     width: 98%;
@@ -98,4 +99,8 @@
   &:hover {
     display: flex;
   }
+}
+
+.check_validation {
+  box-shadow: 0 0 8px red;
 }

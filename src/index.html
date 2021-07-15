@@ -16,23 +16,24 @@
           <li class="nav__item"><a class="nav__link">Главная</a></li>
           <li class="nav__item"><a class="nav__link">Вспомнить</a></li>
           <li class="nav__item"><a class="nav__link">Сделать запись</a>
-            <form action="" class="form-memory">
+            <form action="" class="form-memory" novalidate>
               <div class="form-memory__left-section">
                 <label>
-                  <input type="text" name="title" class="form-memory__title" placeholder="Название события">
+                  <input type="text" name="title" class="form-memory__title" required minlength="10" maxlength="90"
+                    placeholder="Название события">
                 </label>
                 <label>
-                  <textarea name="content" id="" rows="8" class="form-memory__content"
-                    placeholder="Описание"></textarea>
+                  <textarea name="content" id="" rows="8" class="form-memory__content" required minlength="10"
+                    maxlength="1000" placeholder="Описание"></textarea>
                 </label>
               </div>
               <div class="form-memory__right-section">
                 <div class="form-memory__preview"></div>
                 <label>
-                  <input type="file" name="picture" class="form-memory__picture">
+                  <input type="file" name="picture" class="form-memory__picture" required>
                 </label>
                 <label>
-                  <input type="date" name="date" class="form-memory__date">
+                  <input type="date" name="date" class="form-memory__date" required>
                 </label>
                 <button class="form-memory__button">Завершить</button>
               </div>

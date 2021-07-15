@@ -1,3 +1,5 @@
+import Validation from './validation';
+
 class FormManager {
   constructor(form) {
     this.form = form;
@@ -12,7 +14,11 @@ class FormManager {
   handelSubmitGetValue(event) {
     event.preventDefault();
 
-    const data = new FormData(this.form);
+    new Validation(this.form, this.getData);
+  }
+
+  getData(elem) {
+    const data = new FormData(elem);
 
     const obj = {};
 
@@ -26,6 +32,8 @@ class FormManager {
     obj.id = +new Date();
 
     console.log(obj);
+
+    return obj;
   }
 }
 
