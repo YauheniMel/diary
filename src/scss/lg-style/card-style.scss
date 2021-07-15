@@ -1,0 +1,48 @@
+.card {
+  width: 200px;
+  min-height: 250px;
+
+  background: url(~./scss/images/boat.jpg) no-repeat;
+  background-size: contain;
+  background-position-y: center;
+  box-shadow: 0 0 6px rgba($color: #000000, $alpha: 0.5);
+
+  position: relative;
+
+  border: 1px solid lightgray;
+
+  &__head {
+
+  }
+
+  &__description {
+    padding: 0 3px;
+  }
+
+  &__color {
+    border-radius: 50%;
+    border: 2px solid darkgrey;
+    opacity: 0.2;
+
+    width: 30px;
+    height: 30px;
+    line-height: 60px;
+    text-align: center;
+
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+    &:hover {
+      background: radial-gradient(ellipse at top, red, transparent),
+                  radial-gradient(ellipse at center, green, transparent),
+                  radial-gradient(ellipse at bottom, blue, transparent);
+      opacity: 1;
+    }
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 3px;
+  }
+}

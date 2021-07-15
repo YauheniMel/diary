@@ -1,0 +1,101 @@
+.header {
+  background: rgb(224, 186, 113);
+}
+
+.nav {
+  display        : flex;
+  justify-content: space-between;
+
+  &__list {
+    width: 65%;
+
+    display        : flex;
+    justify-content: space-around;
+
+    color: rgb(49, 48, 48);
+    ;
+  }
+
+  &__item {
+    font-size : 18px;
+    text-align: center;
+    width     : 33%;
+  }
+
+  &__link {
+    padding: 15px 0;
+    display: block;
+
+    &:hover {
+      background: rgb(252, 240, 219);
+    }
+
+    &:hover+.form-memory {
+      display: flex;
+    }
+  }
+}
+
+.form-search {
+  padding: 10px 0;
+  width  : 35%;
+  display: inline-block;
+
+  &__input {
+    width: 90%;
+  }
+
+  &__button {
+    border-radius: 3px;
+
+    width : 30px;
+    height: 30px;
+
+    background         : url(~./scss/images/icons/search-icon.svg) no-repeat;
+    background-position: center;
+  }
+}
+
+.form-memory {
+  padding   : 5px;
+  background: rgb(197, 197, 197);
+
+  display        : none;
+  position       : absolute;
+  justify-content: space-between;
+
+  &__left-section {}
+
+  &__title {
+    width: 98%;
+  }
+
+  &__content {
+    width : 98%;
+    resize: none;
+  }
+
+  &__right-section {
+    align-self   : flex-end;
+    margin-bottom: 10px;
+  }
+
+  &__preview {
+    width        : 100%;
+    height       : 180px;
+    margin-bottom: 10px;
+    background   : rgba($color: #000000, $alpha: 0.2);
+  }
+
+  &__picture {}
+
+  &__date {
+    margin-bottom: 4px;
+  }
+
+  &__button {}
+
+  &:hover {
+    display: flex;
+  }
+}

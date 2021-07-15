@@ -18,7 +18,8 @@
   "keywords": [
     "js",
     "scss",
-    "webpack"
+    "webpack",
+    "nodejs"
   ],
   "author": "Melnik",
   "license": "ISC",
@@ -31,10 +32,8 @@
     "css-loader": "^5.2.6",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.4.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
     "node-polyfill-webpack-plugin": "^1.1.4",

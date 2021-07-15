@@ -1,12 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Diary</title>
 </head>
+
 <body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link">Главная</a></li>
+          <li class="nav__item"><a class="nav__link">Вспомнить</a></li>
+          <li class="nav__item"><a class="nav__link">Сделать запись</a>
+            <form action="" class="form-memory">
+              <div class="form-memory__left-section">
+                <label>
+                  <input type="text" class="form-memory__title" placeholder="Название события">
+                </label>
+                <label>
+                  <textarea name="" id="" rows="8" class="form-memory__content"
+                    placeholder="Описание"></textarea>
+                </label>
+              </div>
+              <div class="form-memory__right-section">
+                <div class="form-memory__preview"></div>
+                <label>
+                  <input type="file" class="form-memory__picture">
+                </label>
+                <label>
+                  <input type="date" class="form-memory__date">
+                </label>
+                <button class="form-memory__button">Завершить</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+        <form action="" class="nav__form-search form-search">
+          <input type="text" class="form-search__input">
+          <button class="form-search__button"></button>
+        </form>
+      </nav>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      <section class="main__section">
+        <h2 class="main__date">июль 2021</h2>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+    </div>
+  </footer>
+
+  <!-- template -->
+  <template>
+    <div class="card">
+      <h4 class="card__description">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fuga.
+      </h4>
+      <div class="card__color"></div>
+      <time class="card__time">18 ноября 2015</time>
+    </div>
+  </template>
 
 </body>
+
 </html>
