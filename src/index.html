@@ -15,11 +15,33 @@
         <ul class="nav__list">
           <li class="nav__item"><a class="nav__link">Главная</a></li>
           <li class="nav__item"><a class="nav__link">Вспомнить</a></li>
-          <li class="nav__item"><a class="nav__link">Сделать запись</a></li>
+          <li class="nav__item"><a class="nav__link">Сделать запись</a>
+            <form action="" class="form-memory">
+              <div class="form-memory__left-section">
+                <label>
+                  <input type="text" class="form-memory__title" placeholder="Название события">
+                </label>
+                <label>
+                  <textarea name="" id="" rows="8" class="form-memory__content"
+                    placeholder="Описание"></textarea>
+                </label>
+              </div>
+              <div class="form-memory__right-section">
+                <div class="form-memory__preview"></div>
+                <label>
+                  <input type="file" class="form-memory__picture">
+                </label>
+                <label>
+                  <input type="date" class="form-memory__date">
+                </label>
+                <button class="form-memory__button">Завершить</button>
+              </div>
+            </form>
+          </li>
         </ul>
         <form action="" class="nav__form-search form-search">
           <input type="text" class="form-search__input">
-          <button class="form-search__button">Поиск</button>
+          <button class="form-search__button"></button>
         </form>
       </nav>
     </div>
@@ -36,14 +58,17 @@
     </div>
   </footer>
 
+  <!-- template -->
+  <template>
+    <div class="card">
+      <h4 class="card__description">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fuga.
+      </h4>
+      <div class="card__color"></div>
+      <time class="card__time">18 ноября 2015</time>
+    </div>
+  </template>
 
-  <div class="card">
-    <h4 class="card__description">
-      Название события...
-    </h4>
-    <div class="card__color"></div>
-    <time class="card__time">18 ноября 2015</time>
-  </div>
 </body>
 
 </html>
