@@ -1,6 +1,6 @@
 import './style.scss';
-import FormValues from './js/form-memory/form-values.js';
+import FormManager from './js/form-memory/form-manager';
 
 const formMemoryEl = document.querySelector('.form-memory');
 
-new FormValues(formMemoryEl);
+new FormManager(formMemoryEl);
