@@ -31,8 +31,6 @@ class FormManager {
 
     obj.id = +new Date();
 
-    console.log(obj);
-
     return obj;
   }
 }

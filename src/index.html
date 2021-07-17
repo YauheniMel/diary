@@ -19,21 +19,25 @@
             <form action="" class="form-memory" novalidate>
               <div class="form-memory__left-section">
                 <label>
-                  <input type="text" name="title" class="form-memory__title" required minlength="10" maxlength="90"
+                  <input type="text" name="title" class="form-memory__title" required minlength="2" maxlength="90"
                     placeholder="Название события">
+                  <p class="error"></p>
                 </label>
                 <label>
-                  <textarea name="content" id="" rows="8" class="form-memory__content" required minlength="10"
+                  <textarea name="content" id="" rows="9" class="form-memory__content" required minlength="2"
                     maxlength="1000" placeholder="Описание"></textarea>
+                  <p class="error"></p>
                 </label>
               </div>
               <div class="form-memory__right-section">
                 <div class="form-memory__preview"></div>
                 <label>
                   <input type="file" name="picture" class="form-memory__picture" required>
+                  <p class="error"></p>
                 </label>
                 <label>
                   <input type="date" name="date" class="form-memory__date" required>
+                  <p class="error"></p>
                 </label>
                 <button class="form-memory__button">Завершить</button>
               </div>

@@ -1,26 +1,40 @@
 class Validation {
+  postObj = {};
   constructor(form, callback) {
     this.form = form;
     this.callback = callback;
 
-    this.arrFormElements = form.querySelectorAll('label > *');
+    this.arrFormElements = form.querySelectorAll('label > input,textarea');
 
     this.init();
   }
 
   init() {
-    this.checkErrors(this.arrFormElements);
+    this.checkValidation();
   }
 
-  checkErrors(arr) {
+  showErrors(arr) {
     arr.forEach((elem) => {
-      console.log(elem.validity.valueMissing);
-      console.log(elem.validity.valid);
+      if (elem.validity.valueMissing) {
+        this.form.classList.add('check_valid');
+        elem.nextElementSibling.innerHTML = 'Данные отсутствуют';
+      } else if (!elem.validity.valid && !elem.validity.valueMissing) {
+        this.form.classList.add('check_valid');
 
-      // if (elem.validity.valueMissing) {
-      // } else if (!elem.validity.valid && !elem.validity.valueMissing) {
-      // }
+        const atr = elem.getAttribute('maxlength');
+        elem.nextElementSibling.innerHTML = `Поле должно содержать от 2 до ${atr} символов`;
+      }
     });
+  }
+
+  checkValidation() {
+    if (!this.form.checkValidity()) {
+      this.showErrors(this.arrFormElements);
+    } else {
+      this.postObj = this.callback(this.form);
+
+      console.log(this.postObj);
+    }
   }
 }
 
