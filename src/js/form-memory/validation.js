@@ -1,5 +1,5 @@
 class Validation {
-  postObj = {};
+  // postObj = {};
   constructor(form, callback) {
     this.form = form;
     this.callback = callback;
