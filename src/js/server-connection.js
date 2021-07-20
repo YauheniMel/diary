@@ -1,16 +1,31 @@
 class ServerConnection {
-  constructor(data) {
-    this.data = data;
-
-    this.headers = {
-      'Content-Type': 'application/json;charset=utf-8',
-    };
+  constructor(form) {
+    this.formData = new FormData(form);
   }
 
   async getData() {
     return await fetch('/api/data', {
       method: 'GET',
-      headers: this.headers,
+    });
+  }
+
+  async postData() {
+    await fetch('api/data', {
+      method: 'POST',
+      body: this.formData,
+    });
+  }
+
+  async delData(id) {
+    await fetch(`api/data/${id}`, {
+      method: 'DELETE',
+    });
+  }
+
+  async putData(id) {
+    return await fetch(`api/data/${id}`, {
+      method: 'PUT',
+      body: this.formData,
     });
   }
 }

@@ -1,5 +1,7 @@
+import ServerConnection from '../server-connection.js';
+
 class Validation {
-  // postObj = {};
+  postObj = {};
   constructor(form, callback) {
     this.form = form;
     this.callback = callback;
@@ -31,9 +33,9 @@ class Validation {
     if (!this.form.checkValidity()) {
       this.showErrors(this.arrFormElements);
     } else {
-      this.postObj = this.callback(this.form);
+      const apiMethods = new ServerConnection(this.form);
 
-      console.log(this.postObj);
+      apiMethods.postData();
     }
   }
 }

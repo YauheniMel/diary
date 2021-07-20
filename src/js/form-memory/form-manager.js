@@ -14,24 +14,7 @@ class FormManager {
   handelSubmitGetValue(event) {
     event.preventDefault();
 
-    new Validation(this.form, this.getData);
-  }
-
-  getData(elem) {
-    const data = new FormData(elem);
-
-    const obj = {};
-
-    data.forEach((value, name) => {
-      obj[name] = value;
-
-      const inputEl = document.querySelector(`[name="${name}"]`);
-      inputEl.value = '';
-    });
-
-    obj.id = +new Date();
-
-    return obj;
+    new Validation(this.form);
   }
 }
 
