@@ -64,6 +64,8 @@
   position       : absolute;
   justify-content: space-between;
 
+  z-index: 1;
+
   &__left-section {}
 
   &__title {

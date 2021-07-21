@@ -10,4 +10,15 @@
     padding: 10px;
     text-align: right;
   }
+
+  &__wrap-card {
+    padding: 0 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    overflow: auto;
+    max-height: 74vh;
+  }
 }
