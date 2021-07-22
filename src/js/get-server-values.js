@@ -4,6 +4,9 @@ import CardHandler from './card-elem/card-handler';
 function getServerValues() {
   const fetchMethods = new ServerConnection();
 
+  const wrapCardEl = document.querySelector('.main__wrap-card');
+  wrapCardEl.innerHTML = '';
+
   fetchMethods.getData()
     .then((response) => response.json())
     .then((result) => {

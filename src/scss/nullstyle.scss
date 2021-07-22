@@ -27,10 +27,10 @@ dd {
 }
 
 body {
-  min-height: 100vh;
+  min-height     : 100vh;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  text-rendering : optimizeSpeed;
+  line-height    : 1.5;
 }
 
 ul[class],
@@ -44,10 +44,10 @@ a:not([class]) {
 
 img {
   max-width: 100%;
-  display: block;
+  display  : block;
 }
 
-article > * + * {
+article>*+* {
   margin-top: 1em;
 }
 
@@ -60,9 +60,9 @@ select {
 
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
+    animation-duration       : 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    transition-duration      : 0.01ms !important;
+    scroll-behavior          : auto !important;
   }
 }

@@ -2,23 +2,23 @@
   background: rgb(224, 224, 224);
 
   &__section {
-    height: 88vh;
+    height    : 88vh;
     background: white;
   }
 
   &__date {
-    padding: 10px;
+    padding   : 10px;
     text-align: right;
   }
 
   &__wrap-card {
     padding: 0 10px;
 
-    display: flex;
+    display        : flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
+    flex-wrap      : wrap;
 
-    overflow: auto;
+    overflow  : auto;
     max-height: 74vh;
   }
 }

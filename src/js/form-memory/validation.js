@@ -1,4 +1,5 @@
 import ServerConnection from '../server-connection.js';
+import getServerValues from '../get-server-values.js';
 
 class Validation {
   postObj = {};
@@ -29,13 +30,15 @@ class Validation {
     });
   }
 
-  checkValidation() {
+  async checkValidation() {
     if (!this.form.checkValidity()) {
       this.showErrors(this.arrFormElements);
     } else {
       const apiMethods = new ServerConnection(this.form);
 
       apiMethods.postData();
+
+      getServerValues();
     }
   }
 }
