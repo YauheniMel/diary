@@ -30,15 +30,15 @@ class Validation {
     });
   }
 
-  async checkValidation() {
+  checkValidation() {
     if (!this.form.checkValidity()) {
       this.showErrors(this.arrFormElements);
     } else {
       const apiMethods = new ServerConnection(this.form);
 
-      apiMethods.postData();
-
-      getServerValues();
+      apiMethods.postData()
+        .then(getServerValues())
+        .catch(err => console.log(err));
     }
   }
 }

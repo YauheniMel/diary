@@ -4,6 +4,7 @@ const fs = require('fs');
 const multer = require('multer');
 
 const port = 3000;
+
 const app = express();
 
 app.use(express.json());
@@ -70,8 +71,6 @@ app.post('/api/data', upload.single('picture'), (req, res) => {
 });
 
 app.delete('/api/data/:id', (req, res) => {
-  res.status(200).json({ message: 'Успешное удаление!' });
-
   fs.readFile(dataUrl, (err, data) => {
     if (err) {
       console.log(err.message);

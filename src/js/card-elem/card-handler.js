@@ -4,6 +4,7 @@ import getServerValues from '../get-server-values';
 class CardHandler {
   constructor() {
     this.wrapCardEl = document.querySelector('.main__wrap-card');
+    this.apiMethods = new ServerConnection();
 
     this.templateEl = template.content.cloneNode(true);
   }
@@ -16,6 +17,7 @@ class CardHandler {
 
     cardEl.setAttribute('id', value.id);
 
+    cardEl.addEventListener('click', () => this.handleClickOpenCard());
     btnDelCardEl.addEventListener('click', () => this.handleClickDeleteCard());
 
     cardEl.style.cssText = `
@@ -36,11 +38,33 @@ class CardHandler {
 
     const cardIdValue = targetCardEl.getAttribute('id');
 
-    const apiMethods = new ServerConnection();
+    this.apiMethods.delData(cardIdValue)
+      .then(getServerValues())
+      .catch((err) => console.log(err));
+  }
 
-    apiMethods.delData(cardIdValue);
+  handleClickOpenCard() {
+    const targetEl = event.target;
 
-    getServerValues();
+    const targetCardEl = targetEl.closest('.card');
+    const targetBtnCardDelEl = targetEl.closest('.card__btn-delete');
+
+    if (targetCardEl && !targetBtnCardDelEl) {
+      const cardIdValue = targetCardEl.getAttribute('id');
+
+      this.apiMethods.getData()
+        .then((response) => response.json())
+        .then((data) => data.filter((obj) => obj.id == cardIdValue))
+        .then((currentData) => {
+          document.dispatchEvent(new CustomEvent('show-card_reviewer', {
+            detail: {
+              data: currentData,
+              wrapEl: this.wrapCardEl,
+            },
+          }));
+        })
+        .catch((err) => console.log(err));
+    }
   }
 }
 
