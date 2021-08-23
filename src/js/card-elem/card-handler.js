@@ -6,7 +6,7 @@ class CardHandler {
     this.wrapCardEl = document.querySelector('.main__wrap-card');
     this.apiMethods = new ServerConnection();
 
-    this.templateEl = template.content.cloneNode(true);
+    this.templateEl = templateCard.content.cloneNode(true);
   }
 
   renderCard(value) {
@@ -21,7 +21,7 @@ class CardHandler {
     btnDelCardEl.addEventListener('click', () => this.handleClickDeleteCard());
 
     cardEl.style.cssText = `
-      background: url(./publick/foto/${value.imageName}) no-repeat;
+      background: url(./foto/${value.imageName}) no-repeat;
       background-size: 100% auto;
       overflow: hidden;
       background-position-y: center;
@@ -59,7 +59,6 @@ class CardHandler {
           document.dispatchEvent(new CustomEvent('show-card_reviewer', {
             detail: {
               data: currentData,
-              wrapEl: this.wrapCardEl,
             },
           }));
         })

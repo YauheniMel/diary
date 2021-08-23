@@ -2,7 +2,6 @@
   "name": "package.json",
   "version": "1.0.0",
   "description": "diaryApp",
-  "private": true,
   "scripts": {
     "start": "nodemon server/server.js",
     "dev": "webpack --mode development",

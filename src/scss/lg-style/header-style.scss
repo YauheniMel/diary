@@ -27,10 +27,6 @@
     &:hover {
       background: rgb(212, 212, 212);
     }
-
-    &:hover+.form-memory {
-      display: flex;
-    }
   }
 }
 
@@ -68,7 +64,7 @@
   }
 }
 
-.form-memory {
+.form-creator {
   padding   : 5px;
   background: rgb(197, 197, 197);
 
@@ -103,6 +99,9 @@
     margin       : 0 auto;
     margin-bottom: 10px;
     background   : rgba($color: #000000, $alpha: 0.2);
+
+    display: flex;
+    justify-content: center;
   }
 
   &__picture {}
@@ -112,10 +111,6 @@
   }
 
   &__button {}
-
-  &:hover {
-    display: flex;
-  }
 }
 
 //validation
@@ -148,4 +143,8 @@
       width  : 100%;
     }
   }
+}
+
+.show {
+  display: flex;
 }

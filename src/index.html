@@ -13,33 +13,33 @@
     <div class="container">
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link">Главная</a></li>
-          <li class="nav__item"><a class="nav__link">Вспомнить</a></li>
-          <li class="nav__item"><a class="nav__link">Сделать запись</a>
-            <form action="" class="form-memory" enctype="multipart/form-data" novalidate>
-              <div class="form-memory__left-section">
+          <li class="nav__item"><a class="nav__link nav__link-main">Главная</a></lш>
+          <li class="nav__item"><a class="nav__link nav__link-memory">Вспомнить</a></li>
+          <li class="nav__item"><a class="nav__link nav__link-creator">Сделать запись</a>
+            <form action="" class="form-creator" enctype="multipart/form-data" novalidate>
+              <div class="form-creator__left-section">
                 <label>
-                  <input type="text" name="title" class="form-memory__title" required minlength="2" maxlength="90"
+                  <input type="text" name="title" class="form-creator__title" required minlength="2" maxlength="90"
                     placeholder="Название события">
                   <p class="error"></p>
                 </label>
                 <label>
-                  <textarea name="content" id="" rows="9" class="form-memory__content" required minlength="2"
+                  <textarea name="content" id="" rows="9" class="form-creator__content" required minlength="2"
                     maxlength="1000" placeholder="Описание"></textarea>
                   <p class="error"></p>
                 </label>
               </div>
-              <div class="form-memory__right-section">
-                <div class="form-memory__preview"></div>
+              <div class="form-creator__right-section">
+                <div class="form-creator__preview"></div>
                 <label>
-                  <input type="file" name="picture" class="form-memory__picture" required>
+                  <input type="file" name="picture" class="form-creator__picture" required>
                   <p class="error"></p>
                 </label>
                 <label>
-                  <input type="date" name="date" class="form-memory__date" required>
+                  <input type="date" name="date" class="form-creator__date" required>
                   <p class="error"></p>
                 </label>
-                <button class="form-memory__button">Завершить</button>
+                <button class="form-creator__button">Завершить</button>
               </div>
             </form>
           </li>
@@ -66,7 +66,7 @@
   </footer>
 
   <!-- template -->
-  <template id="template">
+  <template id="templateCard">
     <div class="card">
       <button class="card__btn-delete">X</button>
       <h4 class="card__description"></h4>
@@ -77,6 +77,36 @@
     </div>
   </template>
 
+  <template id="templateFormPut">
+    <form action="" class="form-put" enctype="multipart/form-data" novalidate>
+      <label>
+        <input type="text" name="title" class="form-put__title" required minlength="2" maxlength="90">
+        <p class="error"></p>
+      </label>
+      <label>
+        <textarea name="content" id="" rows="9" class="form-put__content" required minlength="2"
+          maxlength="1000"></textarea>
+        <p class="error"></p>
+      </label>
+      <div class="form-put__preview"></div>
+      <div class="form-put__footer">
+        <div class="form-put__footer-button">
+          <button class="form-put__button-cancel">Отмена</button>
+          <button type="submit" class="form-put__button-confirm">Завершить</button>
+        </div>
+        <div class="form-put__footer-section">
+          <label>
+            <input type="file" name="picture" class="form-put__picture" required>
+            <p class="error"></p>
+          </label>
+          <label>
+            <input type="date" name="date" class="form-put__date" required>
+            <p class="error"></p>
+          </label>
+        </div>
+      </div>
+    </form>
+  </template>
 </body>
 
 </html>

@@ -1,11 +1,12 @@
-import ServerConnection from '../server-connection.js';
-import getServerValues from '../get-server-values.js';
+import ServerConnection from './server-connection.js';
+import getServerValues from './get-server-values.js';
 
 class Validation {
-  postObj = {};
-  constructor(form, callback) {
+  srcImgEl = '';
+
+  constructor(form, command) {
     this.form = form;
-    this.callback = callback;
+    this.command = command;
 
     this.arrFormElements = form.querySelectorAll('label > input,textarea');
 
@@ -34,12 +35,33 @@ class Validation {
     if (!this.form.checkValidity()) {
       this.showErrors(this.arrFormElements);
     } else {
-      const apiMethods = new ServerConnection(this.form);
+      if(this.command == 'post') {
+        this.postData();
+      } else if(this.command == 'put') {
+        this.putData();
+      }
+    }
+  }
+
+  postData() {
+    const apiMethods = new ServerConnection(this.form);
+
+    console.log('post');
 
       apiMethods.postData()
         .then(getServerValues())
         .catch(err => console.log(err));
-    }
+  }
+
+  putData() {
+    const apiMethods = new ServerConnection(this.form);
+
+    console.log('put');
+
+
+      // apiMethods.putData()
+      //   .then(getServerValues())
+      //   .catch(err => console.log(err));
   }
 }
 

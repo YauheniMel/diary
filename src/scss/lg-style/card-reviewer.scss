@@ -16,10 +16,12 @@
     margin : auto;
     padding: 5px;
 
+    position: relative;
+
     align-self: center;
 
-    width : 80%;
-    height: 80%;
+    width : 1100px;
+    height: 80vh;
 
     background: rgb(26, 138, 123);
 
@@ -63,11 +65,10 @@
       display: flex;
       justify-content: space-between;
 
-      padding-top: 20px;
+      margin-top: 4px;
     }
 
     &__btn-section {
-
     }
 
     &__btn-correct {
