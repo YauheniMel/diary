@@ -16,7 +16,7 @@ const storageConfig = multer.diskStorage({
     cb(null, 'public/foto');
   },
   filename: (req, file, cb) => {
-    imageName = file.originalname.replace(/[^A-Za-zА-Яа-я.]+/g, '');
+    imageName = file.originalname.replace(/[^A-Za-zА-Яа-я.\d]+/g, '');
     cb(null, imageName);
   },
 });
@@ -55,8 +55,6 @@ app.post('/api/data', upload.single('picture'), (req, res) => {
     } else {
       const arrPost = JSON.parse(data);
 
-      console.log(imageName);
-
       req.body.imageName = imageName;
       req.body.id = +new Date();
 
@@ -94,6 +92,48 @@ app.delete('/api/data/:id', (req, res) => {
         if (item.id != req.params.id) {
           return item;
         }
+      });
+
+      fs.writeFile(dataUrl, JSON.stringify(newData), (err) => {
+        if (err) {
+          console.log(err.message);
+          throw err;
+        }
+      });
+    }
+  });
+});
+
+app.put('/api/data/:id', upload.single('picture'), (req, res) => {
+  fs.readFile(dataUrl, (err, data) => {
+    if (err) {
+      console.log(err.message);
+      throw err;
+    } else {
+      const jsonToArr = JSON.parse(data);
+
+      const newData = jsonToArr.map((obj) => {
+        if (obj.id == req.params.id) {
+          for (const key in obj) {
+            if (req.body[key]) {
+              obj[key] = req.body[key];
+            }
+          }
+
+          if (imageName) {
+            fs.unlink(`${fotoUrl}/${obj.imageName}`, (err) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(`File ${obj.imageName} was deleted!...`);
+              }
+            });
+
+            obj.imageName = imageName;
+          }
+        }
+
+        return obj;
       });
 
       fs.writeFile(dataUrl, JSON.stringify(newData), (err) => {

@@ -3,8 +3,8 @@ import Validation from '../validation';
 class FormManager {
   constructor(form) {
     this.form = form;
-    this.imgPreviewEl = form.querySelector('.form-creator__preview');
-    this.inputFileEl = document.querySelector('.form-creator__picture');
+    this.imgPreviewEl = form.querySelector('.form-post__preview');
+    this.inputFileEl = document.querySelector('.form-post__picture');
 
     this.init();
   }

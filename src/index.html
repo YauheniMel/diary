@@ -15,31 +15,31 @@
         <ul class="nav__list">
           <li class="nav__item"><a class="nav__link nav__link-main">Главная</a></lш>
           <li class="nav__item"><a class="nav__link nav__link-memory">Вспомнить</a></li>
-          <li class="nav__item"><a class="nav__link nav__link-creator">Сделать запись</a>
-            <form action="" class="form-creator" enctype="multipart/form-data" novalidate>
-              <div class="form-creator__left-section">
+          <li class="nav__item"><a class="nav__link nav__link-post">Сделать запись</a>
+            <form action="" class="form-post" enctype="multipart/form-data" novalidate>
+              <div class="form-post__left-section">
                 <label>
-                  <input type="text" name="title" class="form-creator__title" required minlength="2" maxlength="90"
+                  <input type="text" name="title" class="form-post__title" required minlength="2" maxlength="90"
                     placeholder="Название события">
                   <p class="error"></p>
                 </label>
                 <label>
-                  <textarea name="content" id="" rows="9" class="form-creator__content" required minlength="2"
+                  <textarea name="content" id="" rows="9" class="form-post__content" required minlength="2"
                     maxlength="1000" placeholder="Описание"></textarea>
                   <p class="error"></p>
                 </label>
               </div>
-              <div class="form-creator__right-section">
-                <div class="form-creator__preview"></div>
+              <div class="form-post__right-section">
+                <div class="form-post__preview"></div>
                 <label>
-                  <input type="file" name="picture" class="form-creator__picture" required>
+                  <input type="file" name="picture" class="form-post__picture" required>
                   <p class="error"></p>
                 </label>
                 <label>
-                  <input type="date" name="date" class="form-creator__date" required>
+                  <input type="date" name="date" class="form-post__date" required>
                   <p class="error"></p>
                 </label>
-                <button class="form-creator__button">Завершить</button>
+                <button class="form-post__button">Завершить</button>
               </div>
             </form>
           </li>
@@ -96,7 +96,7 @@
         </div>
         <div class="form-put__footer-section">
           <label>
-            <input type="file" name="picture" class="form-put__picture" required>
+            <input type="file" name="picture" class="form-put__picture">
             <p class="error"></p>
           </label>
           <label>

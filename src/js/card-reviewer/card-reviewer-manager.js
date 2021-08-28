@@ -19,7 +19,7 @@ class CardReviewerManager {
     wrapCardReviewerEl.classList.add('wrap_card-reviewer');
 
     const template = `
-      <div class="card-reviewer">
+      <div class="card-reviewer" id="${this.data.id}">
         <div class="card-reviewer__title">
           <h2>${this.data.title}</h2>
         </div>

@@ -1,10 +1,10 @@
 class NavManager {
-  constructor(formCreatorEl) {
+  constructor(formPostEl) {
     this.linkMainEl = document.querySelector('.nav__link-main');
     this.linkMemoryEl = document.querySelector('.nav__link-memory');
-    this.linkCreatorEl = document.querySelector('.nav__link-creator');
+    this.linkPostEl = document.querySelector('.nav__link-post');
 
-    this.formCreatorEl = formCreatorEl;
+    this.formPostEl = formPostEl;
 
     this.init();
   }
@@ -16,10 +16,10 @@ class NavManager {
   hideShowElem(event) {
     const targetEl = event.target;
 
-    if (targetEl === this.linkCreatorEl) {
-      this.formCreatorEl.classList.toggle('show');
-    } else if (targetEl.closest('form') !== this.formCreatorEl) {
-      this.formCreatorEl.classList.remove('show');
+    if (targetEl === this.linkPostEl) {
+      this.formPostEl.classList.toggle('show');
+    } else if (targetEl.closest('form') !== this.formPostEl) {
+      this.formPostEl.classList.remove('show');
     }
   }
 }

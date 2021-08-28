@@ -23,7 +23,7 @@ class ServerConnection {
   }
 
   async putData(id) {
-    return await fetch(`api/data/${id}`, {
+    await fetch(`api/data/${id}`, {
       method: 'PUT',
       body: this.formData,
     });

@@ -46,8 +46,6 @@ class Validation {
   postData() {
     const apiMethods = new ServerConnection(this.form);
 
-    console.log('post');
-
       apiMethods.postData()
         .then(getServerValues())
         .catch(err => console.log(err));
@@ -56,12 +54,12 @@ class Validation {
   putData() {
     const apiMethods = new ServerConnection(this.form);
 
-    console.log('put');
+    const cardRevierEl = this.form.closest('.card-reviewer');
+    const id = cardRevierEl.getAttribute('id');
 
-
-      // apiMethods.putData()
-      //   .then(getServerValues())
-      //   .catch(err => console.log(err));
+    apiMethods.putData(id)
+      .then(getServerValues())
+      .catch(err => console.log(err));
   }
 }
 
