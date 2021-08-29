@@ -1,6 +1,6 @@
 import Validation from '../validation';
 
-class FormManager {
+class FormPostManager {
   constructor(form) {
     this.form = form;
     this.imgPreviewEl = form.querySelector('.form-post__preview');
@@ -10,12 +10,12 @@ class FormManager {
   }
 
   init() {
-    this.form.addEventListener('submit', this.handleSubmitGetValue.bind(this));
+    this.form.addEventListener('submit', this.handleSubmitPostValue.bind(this));
 
     this.inputFileEl.addEventListener('change', this.handleChangeInputFileEl.bind(this));
   }
 
-  handleSubmitGetValue(event) {
+  handleSubmitPostValue(event) {
     event.preventDefault();
 
     new Validation(this.form, 'post');
@@ -25,6 +25,7 @@ class FormManager {
     this.imgPreviewEl.innerHTML = '';
 
     const file = this.inputFileEl.files[0];
+
     const urlFile = URL.createObjectURL(file);
     const img = document.createElement('img');
     img.style.cssText = `
@@ -36,4 +37,4 @@ class FormManager {
   }
 }
 
-export default FormManager;
+export default FormPostManager;

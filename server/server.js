@@ -16,51 +16,51 @@ const storageConfig = multer.diskStorage({
     cb(null, 'public/foto');
   },
   filename: (req, file, cb) => {
-    imageName = file.originalname.replace(/[^A-Za-zА-Яа-я.\d]+/g, '');
-    cb(null, imageName);
+    if (file.originalname) {
+      imageName = +new Date() + file.originalname.match(/.[\w]+$/g, '');
+
+      cb(null, imageName);
+    }
   },
 });
+
 const upload = multer({ storage: storageConfig });
 
 const baseURL = path.join(__dirname, '../');
+
+app.use(express.static(path.join(`${baseURL}public`)));
+app.use(express.static(path.join(`${baseURL}dist`)));
+
 const dataUrl = path.resolve(baseURL, 'public', 'data', 'data.json');
 const fotoUrl = path.resolve(baseURL, 'public', 'foto');
 
-app.get('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(baseURL, 'dist', 'index.html'));
-});
-
 app.get('/api/data', (req, res) => {
-  let data;
-
   fs.readFile(dataUrl, (err, obj) => {
     if (err) {
       console.log(err.message);
       throw err;
     } else {
-      data = JSON.parse(obj);
+      res.status(200).send(obj);
     }
-
-    res.status(200).json(data);
   });
 });
 
 app.post('/api/data', upload.single('picture'), (req, res) => {
-  let newArrPost;
-
   fs.readFile(dataUrl, (err, data) => {
     if (err) {
       console.log(err.message);
       throw err;
     } else {
-      const arrPost = JSON.parse(data);
+      const allData = JSON.parse(data);
 
       req.body.imageName = imageName;
-      req.body.id = +new Date();
+      req.body.id = +imageName.match(/[\d]+/gim)[0];
 
-      newArrPost = JSON.stringify([...arrPost, req.body]);
+      imageName = null;
 
-      fs.writeFile(dataUrl, newArrPost, (err) => {
+      const newData = JSON.stringify([...allData, req.body]);
+
+      fs.writeFile(dataUrl, newData, (err) => {
         if (err) {
           console.log(err.message);
           throw err;
@@ -78,7 +78,7 @@ app.delete('/api/data/:id', (req, res) => {
     } else {
       const jsonToArr = JSON.parse(data);
 
-      newData = jsonToArr.filter((item) => {
+      const newData = jsonToArr.filter((item) => {
         if (item.id == req.params.id) {
           fs.unlink(`${fotoUrl}/${item.imageName}`, (err) => {
             if (err) {
@@ -130,6 +130,8 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
             });
 
             obj.imageName = imageName;
+
+            imageName = null;
           }
         }
 
@@ -146,8 +148,9 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
   });
 });
 
-app.use(express.static(path.join(`${baseURL}public`)));
-app.use(express.static(path.join(`${baseURL}dist`)));
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(baseURL, 'dist', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log('Server started!...');

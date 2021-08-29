@@ -10,6 +10,7 @@ function getServerValues() {
   fetchMethods.getData()
     .then((response) => response.json())
     .then((result) => {
+      console.log(result);
       result.forEach((obj) => {
         const cardControl = new CardHandler(obj);
 

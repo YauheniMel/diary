@@ -33,6 +33,11 @@
 
     width: 59%;
     height: 70%;
+
+    img {
+      margin: auto;
+      height: 100%;
+    }
   }
 
   &__footer {
@@ -65,6 +70,10 @@
 
   &__date {
   }
+}
+
+.hide {
+  display: none;
 }
 
 // validation

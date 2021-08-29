@@ -4,11 +4,11 @@ import getServerValues from './get-server-values.js';
 class Validation {
   srcImgEl = '';
 
-  constructor(form, command) {
-    this.form = form;
+  constructor(formEl, command) {
+    this.formEl = formEl;
     this.command = command;
 
-    this.arrFormElements = form.querySelectorAll('label > input,textarea');
+    this.arrFormElements = formEl.querySelectorAll('label > input,textarea');
 
     this.init();
   }
@@ -20,10 +20,10 @@ class Validation {
   showErrors(arr) {
     arr.forEach((elem) => {
       if (elem.validity.valueMissing) {
-        this.form.classList.add('check_valid');
+        this.formEl.classList.add('check_valid');
         elem.nextElementSibling.innerHTML = 'Данные отсутствуют';
       } else if (!elem.validity.valid && !elem.validity.valueMissing) {
-        this.form.classList.add('check_valid');
+        this.formEl.classList.add('check_valid');
 
         const atr = elem.getAttribute('maxlength');
         elem.nextElementSibling.innerHTML = `Поле должно содержать от 2 до ${atr} символов`;
@@ -32,7 +32,7 @@ class Validation {
   }
 
   checkValidation() {
-    if (!this.form.checkValidity()) {
+    if (!this.formEl.checkValidity()) {
       this.showErrors(this.arrFormElements);
     } else {
       if(this.command == 'post') {
@@ -44,22 +44,34 @@ class Validation {
   }
 
   postData() {
-    const apiMethods = new ServerConnection(this.form);
+    const apiMethods = new ServerConnection(this.formEl);
 
-      apiMethods.postData()
-        .then(getServerValues())
-        .catch(err => console.log(err));
+    this.clearFormEl();
+
+    apiMethods.postData()
+      .then(getServerValues())
+      .catch(err => console.log(err));
   }
 
   putData() {
-    const apiMethods = new ServerConnection(this.form);
+    const apiMethods = new ServerConnection(this.formEl);
 
-    const cardRevierEl = this.form.closest('.card-reviewer');
+    const cardRevierEl = this.formEl.closest('.card-reviewer');
     const id = cardRevierEl.getAttribute('id');
 
     apiMethods.putData(id)
       .then(getServerValues())
       .catch(err => console.log(err));
+  }
+
+  clearFormEl() {
+    this.formEl.reset();
+
+    const imgEl = this.formEl.querySelector('img');
+    imgEl.remove();
+
+    this.formEl.classList.remove('show');
+    this.formEl.classList.remove('check_valid');
   }
 }
 

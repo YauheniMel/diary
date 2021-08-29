@@ -11,8 +11,8 @@ class CardHandler {
 
   renderCard(value) {
     const cardEl = this.templateEl.querySelector('.card');
-    const cardDescriptionEl = this.templateEl.querySelector('.card__description');
-    const cardTimeEl = this.templateEl.querySelector('.card__time');
+    const cardTitleEl = this.templateEl.querySelector('.card__title');
+    const cardDateEl = this.templateEl.querySelector('.card__date');
     const btnDelCardEl = this.templateEl.querySelector('.card__btn-delete');
 
     cardEl.setAttribute('id', value.id);
@@ -27,8 +27,8 @@ class CardHandler {
       background-position-y: center;
     `;
 
-    cardDescriptionEl.innerHTML = value.title;
-    cardTimeEl.innerHTML = value.date;
+    cardTitleEl.innerHTML = value.title;
+    cardDateEl.innerHTML = value.date;
 
     this.wrapCardEl.append(this.templateEl);
   }

@@ -2,6 +2,7 @@ import FormPutManager from '../form-put/form-put-manager';
 
 class CardReviewerManager {
   data;
+  elem;
   constructor() {
     this.init();
   }
@@ -15,8 +16,12 @@ class CardReviewerManager {
   }
 
   renderCardReviewer() {
-    const wrapCardReviewerEl = document.createElement('div');
-    wrapCardReviewerEl.classList.add('wrap_card-reviewer');
+    let wrapCardReviewerEl = document.querySelector('.wrap_card-reviewer');
+
+    if (!wrapCardReviewerEl) {
+      wrapCardReviewerEl = document.createElement('div');
+      wrapCardReviewerEl.classList.add('wrap_card-reviewer');
+    }
 
     const template = `
       <div class="card-reviewer" id="${this.data.id}">
@@ -51,9 +56,9 @@ class CardReviewerManager {
 
     const wrapEl = document.querySelector('.wrap_card-reviewer');
 
-    if(targetEl.dataset.action == 'delete') {
+    if (targetEl.dataset.action == 'delete' && wrapEl) {
       wrapEl.remove();
-    } else if(targetEl.dataset.action == 'put') {
+    } else if (targetEl.dataset.action == 'put') {
       new FormPutManager(this.data);
     }
   }
