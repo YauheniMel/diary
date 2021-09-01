@@ -1,5 +1,6 @@
 import ServerConnection from './server-connection.js';
-import getServerValues from './get-server-values.js';
+// import getServerValues from './get-server-values.js';
+import CardHandler from './card-elem/card-handler.js';
 
 class Validation {
   srcImgEl = '';
@@ -36,32 +37,15 @@ class Validation {
       this.showErrors(this.arrFormElements);
     } else {
       if(this.command == 'post') {
-        this.postData();
+        new ServerConnection(this.command, null, this.formEl);
+
+        this.clearFormEl();
+
+        new CardHandler();
       } else if(this.command == 'put') {
-        this.putData();
+        new ServerConnection(this.command, null, this.formEl);
       }
     }
-  }
-
-  postData() {
-    const apiMethods = new ServerConnection(this.formEl);
-
-    this.clearFormEl();
-
-    apiMethods.postData()
-      .then(getServerValues())
-      .catch(err => console.log(err));
-  }
-
-  putData() {
-    const apiMethods = new ServerConnection(this.formEl);
-
-    const cardRevierEl = this.formEl.closest('.card-reviewer');
-    const id = cardRevierEl.getAttribute('id');
-
-    apiMethods.putData(id)
-      .then(getServerValues())
-      .catch(err => console.log(err));
   }
 
   clearFormEl() {

@@ -1,12 +1,33 @@
 class ServerConnection {
-  constructor(form) {
-    this.formData = new FormData(form);
+  formData = '';
+  constructor(command, id, form) {
+    this.command = command;
+    this.id = id;
+    this.form = form;
+
+    this.init();
+  }
+
+  init() {
+    if (this.command == 'delete') {
+      this.delData(this.id);
+    } else if (this.command == 'post') {
+      this.formData = new FormData(this.form);
+
+      this.postData();
+    } else if (this.command == 'put') {
+      this.formData = new FormData(this.form);
+
+      this.putData(this.id);
+    }
   }
 
   async getData() {
-    return await fetch('/api/data', {
+    const response = await fetch('/api/data', {
       method: 'GET',
     });
+
+    return await response.json();
   }
 
   async postData() {
@@ -14,12 +35,16 @@ class ServerConnection {
       method: 'POST',
       body: this.formData,
     });
+
+    return;
   }
 
   async delData(id) {
     await fetch(`api/data/${id}`, {
       method: 'DELETE',
     });
+
+    return;
   }
 
   async putData(id) {
@@ -27,6 +52,8 @@ class ServerConnection {
       method: 'PUT',
       body: this.formData,
     });
+
+    return;
   }
 }
 

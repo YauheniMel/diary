@@ -4,46 +4,58 @@ import getServerValues from '../get-server-values';
 class CardHandler {
   constructor() {
     this.wrapCardEl = document.querySelector('.main__wrap-card');
-    this.apiMethods = new ServerConnection();
 
-    this.templateEl = templateCard.content.cloneNode(true);
+    this.init();
   }
 
-  renderCard(value) {
-    const cardEl = this.templateEl.querySelector('.card');
-    const cardTitleEl = this.templateEl.querySelector('.card__title');
-    const cardDateEl = this.templateEl.querySelector('.card__date');
-    const btnDelCardEl = this.templateEl.querySelector('.card__btn-delete');
+  async init() {
+    const result = await getServerValues();
 
-    cardEl.setAttribute('id', value.id);
-
-    cardEl.addEventListener('click', () => this.handleClickOpenCard());
-    btnDelCardEl.addEventListener('click', () => this.handleClickDeleteCard());
-
-    cardEl.style.cssText = `
-      background: url(./foto/${value.imageName}) no-repeat;
-      background-size: 100% auto;
-      overflow: hidden;
-      background-position-y: center;
-    `;
-
-    cardTitleEl.innerHTML = value.title;
-    cardDateEl.innerHTML = value.date;
-
-    this.wrapCardEl.append(this.templateEl);
+    this.renderCard(result);
   }
 
-  handleClickDeleteCard() {
+  renderCard(data) {
+    this.wrapCardEl.innerHTML = '';
+
+    data.forEach((item) => {
+      const templateCardEl = templateCard.content.cloneNode(true);
+      const cardEl = templateCardEl.querySelector('.card');
+      const cardTitleEl = templateCardEl.querySelector('.card__title');
+      const cardDateEl = templateCardEl.querySelector('.card__date');
+      const btnDelCardEl = templateCardEl.querySelector('.card__btn-delete');
+
+      cardEl.setAttribute('id', item.id);
+
+      cardEl.addEventListener('click', () => this.handleClickOpenCard());
+      btnDelCardEl.addEventListener('click', () => this.handleClickDeleteCard());
+
+      cardEl.style.cssText = `
+        background: url(./foto/${item.imageName}) no-repeat;
+        background-size: 100% auto;
+        overflow: hidden;
+        background-position-y: center;
+      `;
+
+      cardTitleEl.innerHTML = item.title;
+      cardDateEl.innerHTML = item.date;
+
+      this.wrapCardEl.append(cardEl);
+    });
+  }
+
+  async handleClickDeleteCard() {
     const targetCardEl = event.target.closest('.card');
 
     const cardIdValue = targetCardEl.getAttribute('id');
 
-    this.apiMethods.delData(cardIdValue)
-      .then(getServerValues())
-      .catch((err) => console.log(err));
+    new ServerConnection('delete', cardIdValue, null);
+
+    const result = await getServerValues();
+
+    this.renderCard(result);
   }
 
-  handleClickOpenCard() {
+  async handleClickOpenCard() {
     const targetEl = event.target;
 
     const targetCardEl = targetEl.closest('.card');
@@ -52,17 +64,14 @@ class CardHandler {
     if (targetCardEl && !targetBtnCardDelEl) {
       const cardIdValue = targetCardEl.getAttribute('id');
 
-      this.apiMethods.getData()
-        .then((response) => response.json())
-        .then((data) => data.filter((obj) => obj.id == cardIdValue))
-        .then((currentData) => {
-          document.dispatchEvent(new CustomEvent('show-card_reviewer', {
-            detail: {
-              data: currentData,
-            },
-          }));
-        })
-        .catch((err) => console.log(err));
+      const result = await getServerValues();
+      const targetObj = result.filter((obj) => obj.id == cardIdValue);
+
+      document.dispatchEvent(new CustomEvent('show-card_reviewer', {
+        detail: {
+          data: targetObj,
+        },
+      }));
     }
   }
 }

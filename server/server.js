@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
+const http = require('http');
+
+http.globalAgent.maxSockets = 100;
+http.Agent.maxSockets = 100;
 
 const port = 3000;
 
