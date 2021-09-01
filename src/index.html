@@ -13,28 +13,33 @@
     <div class="container">
       <nav class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a class="nav__link">Главная</a></li>
-          <li class="nav__item"><a class="nav__link">Вспомнить</a></li>
-          <li class="nav__item"><a class="nav__link">Сделать запись</a>
-            <form action="" class="form-memory">
-              <div class="form-memory__left-section">
+          <li class="nav__item"><a class="nav__link nav__link-main">Главная</a></lш>
+          <li class="nav__item"><a class="nav__link nav__link-memory">Вспомнить</a></li>
+          <li class="nav__item"><a class="nav__link nav__link-post">Сделать запись</a>
+            <form action="" class="form-post" enctype="multipart/form-data" novalidate>
+              <div class="form-post__left-section">
                 <label>
-                  <input type="text" class="form-memory__title" placeholder="Название события">
+                  <input type="text" name="title" class="form-post__title" required minlength="2" maxlength="90"
+                    placeholder="Название события">
+                  <p class="error"></p>
                 </label>
                 <label>
-                  <textarea name="" id="" rows="8" class="form-memory__content"
-                    placeholder="Описание"></textarea>
+                  <textarea name="content" id="" rows="9" class="form-post__content" required minlength="2"
+                    maxlength="1000" placeholder="Описание"></textarea>
+                  <p class="error"></p>
                 </label>
               </div>
-              <div class="form-memory__right-section">
-                <div class="form-memory__preview"></div>
+              <div class="form-post__right-section">
+                <div class="form-post__preview"></div>
                 <label>
-                  <input type="file" class="form-memory__picture">
+                  <input type="file" name="picture" class="form-post__picture" required>
+                  <p class="error"></p>
                 </label>
                 <label>
-                  <input type="date" class="form-memory__date">
+                  <input type="date" name="date" class="form-post__date" required>
+                  <p class="error"></p>
                 </label>
-                <button class="form-memory__button">Завершить</button>
+                <button class="form-post__button">Завершить</button>
               </div>
             </form>
           </li>
@@ -50,6 +55,8 @@
     <div class="container">
       <section class="main__section">
         <h2 class="main__date">июль 2021</h2>
+        <div class="main__wrap-card">
+        </div>
       </section>
     </div>
   </main>
@@ -59,16 +66,47 @@
   </footer>
 
   <!-- template -->
-  <template>
+  <template id="templateCard">
     <div class="card">
-      <h4 class="card__description">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, fuga.
-      </h4>
-      <div class="card__color"></div>
-      <time class="card__time">18 ноября 2015</time>
+      <button class="card__btn-delete">X</button>
+      <h4 class="card__title"></h4>
+      <div class="card__footer">
+        <canvas class="card__color"></canvas>
+        <time class="card__date"></time>
+      </div>
     </div>
   </template>
 
+  <template id="templateFormPut">
+    <form action="" class="form-put" enctype="multipart/form-data" novalidate>
+      <label>
+        <input type="text" name="title" class="form-put__title" required minlength="2" maxlength="90">
+        <p class="error"></p>
+      </label>
+      <label>
+        <textarea name="content" id="" rows="9" class="form-put__content" required minlength="2"
+          maxlength="1000"></textarea>
+        <p class="error"></p>
+      </label>
+      <div class="form-put__preview"></div>
+      <div class="form-put__footer">
+        <div class="form-put__footer-button">
+          <button data-action="cancel" class="form-put__button form-put__button-cancel">Отмена</button>
+          <button data-action="confirm" type="submit" class="form-put__button form-put__button-confirm">Подтвердить</button>
+        </div>
+        <div class="form-put__footer-section">
+          <label>
+            <input type="file" name="picture" class="form-put__picture">
+            <p class="error"></p>
+          </label>
+          <label>
+            <input type="date" name="date" class="form-put__date" required>
+            <p class="error"></p>
+          </label>
+        </div>
+      </div>
+    </form>
+  </template>
 </body>
 
 </html>

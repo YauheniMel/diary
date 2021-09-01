@@ -1,5 +1,5 @@
 .header {
-  background: rgb(224, 186, 113);
+  background: rgb(26, 138, 123);
 }
 
 .nav {
@@ -10,53 +10,61 @@
     width: 65%;
 
     display        : flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 
     color: rgb(49, 48, 48);
-    ;
   }
 
   &__item {
     font-size : 18px;
     text-align: center;
-    width     : 33%;
   }
 
   &__link {
-    padding: 15px 0;
+    padding: 15px 20px;
     display: block;
 
     &:hover {
-      background: rgb(252, 240, 219);
-    }
-
-    &:hover+.form-memory {
-      display: flex;
+      background: rgb(212, 212, 212);
     }
   }
 }
 
 .form-search {
-  padding: 10px 0;
+  position  : relative;
+  align-self: center;
+
   width  : 35%;
   display: inline-block;
 
   &__input {
-    width: 90%;
+    width : 90%;
+    height: 30px;
+
+    border       : none;
+    border-radius: 3px;
   }
 
   &__button {
-    border-radius: 3px;
+    position: absolute;
+    right   : 39px;
+
+    border       : none;
+    border-radius: 0 3px 3px 0;
 
     width : 30px;
     height: 30px;
 
     background         : url(~./scss/images/icons/search-icon.svg) no-repeat;
     background-position: center;
+
+    &:hover {
+      background-color: lightgray;
+    }
   }
 }
 
-.form-memory {
+.form-post {
   padding   : 5px;
   background: rgb(197, 197, 197);
 
@@ -64,27 +72,36 @@
   position       : absolute;
   justify-content: space-between;
 
+  z-index: 1;
+
   &__left-section {}
 
   &__title {
-    width: 98%;
+    width: 100%;
   }
 
   &__content {
-    width : 98%;
-    resize: none;
+    width        : 100%;
+    resize       : none;
+    margin-bottom: -4px;
   }
 
   &__right-section {
     align-self   : flex-end;
     margin-bottom: 10px;
+
+    padding: 10px;
   }
 
   &__preview {
-    width        : 100%;
+    width        : 96%;
     height       : 180px;
+    margin       : 0 auto;
     margin-bottom: 10px;
     background   : rgba($color: #000000, $alpha: 0.2);
+
+    display: flex;
+    justify-content: center;
   }
 
   &__picture {}
@@ -94,8 +111,40 @@
   }
 
   &__button {}
+}
 
-  &:hover {
-    display: flex;
+//validation
+
+.error {
+  display         : none;
+  background-color: rgba(206, 107, 107, 0.5);
+  color           : white;
+  font-weight     : bold;
+
+  z-index: 1;
+}
+
+.check_valid {
+
+  input:invalid {
+    box-shadow: 0 0 6px red;
+
+    &~.error {
+      display: inline-block;
+      width  : 100%;
+    }
   }
+
+  textarea:invalid {
+    box-shadow: 0 0 6px red;
+
+    &~.error {
+      display: inline-block;
+      width  : 100%;
+    }
+  }
+}
+
+.show {
+  display: flex;
 }
