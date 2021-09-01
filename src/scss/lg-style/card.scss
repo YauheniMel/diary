@@ -2,7 +2,7 @@
   display: inline-block;
 
   width     : 200px;
-  min-height: 250px;
+  height: 250px;
 
   margin: 5px;
 
@@ -10,10 +10,13 @@
 
   position: relative;
 
-  &__description {
-    padding   : 0 3px;
+  &__title {
+    padding   : 5px;
+    height    : 55px;
+
     background: white;
-    height    : 60px;
+
+    overflow  : hidden;
   }
 
   &__btn-delete {
@@ -25,11 +28,11 @@
     width : 30px;
     height: 30px;
 
-    border: none;
+    border       : none;
     border-radius: 0 0 3px 3px;
 
     color     : white;
-    background: rgba(255, 68, 68, 0.781);
+    background: rgb(238, 95, 95);
   }
 
   &__footer {

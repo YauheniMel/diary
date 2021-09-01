@@ -2,7 +2,8 @@
   background: rgb(224, 224, 224);
 
   &__section {
-    height    : 88vh;
+    height: 100vh;
+
     background: white;
   }
 
@@ -14,11 +15,12 @@
   &__wrap-card {
     padding: 0 10px;
 
+    height    : 77vh;
+
     display        : flex;
     justify-content: flex-start;
     flex-wrap      : wrap;
 
     overflow  : auto;
-    max-height: 74vh;
   }
 }

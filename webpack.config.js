@@ -36,6 +36,13 @@ module.exports = {
         use: 'html-loader',
       },
       {
+        test: /\.ttf$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[hash][ext]',
+        },
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
