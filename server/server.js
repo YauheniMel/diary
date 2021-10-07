@@ -38,13 +38,13 @@ app.use(express.static(path.join(`${baseURL}dist`)));
 const dataUrl = path.resolve(baseURL, 'public', 'data');
 const photoUrl = path.resolve(baseURL, 'public', 'photo');
 
-if(!fs.existsSync(`${baseURL}public`)) {
+if (!fs.existsSync(`${baseURL}public`)) {
   fs.mkdirSync(dataUrl, { recursive: true });
   fs.mkdirSync(photoUrl, { recursive: true });
-  fs.writeFileSync(dataUrl + "/data.json", '[]');
+  fs.writeFileSync(`${dataUrl}/data.json`, '[]');
 }
 
-const jsonURL = path.resolve(dataUrl + "/data.json");
+const jsonURL = path.resolve(`${dataUrl}/data.json`);
 
 app.get('/api/data', (req, res) => {
   fs.readFile(jsonURL, (err, obj) => {
