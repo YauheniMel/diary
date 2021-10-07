@@ -3,7 +3,7 @@ import getServerValues from '../get-server-values';
 
 class CardHandler {
   constructor() {
-    this.wrapCardEl = document.querySelector('.main__wrap-card');
+    this.wrapCardEl = document.querySelector('.memory__wrap-card');
 
     this.init();
   }
