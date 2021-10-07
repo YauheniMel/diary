@@ -44,7 +44,7 @@ class FormPutManager {
 
   getImgEl(url) {
     const imgEl = document.createElement('img');
-    imgEl.src = `./foto/${url}`;
+    imgEl.src = `./photo/${url}`;
 
     this.previewImgEl.append(imgEl);
   }

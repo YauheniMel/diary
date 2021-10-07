@@ -30,7 +30,7 @@ class CardHandler {
       btnDelCardEl.addEventListener('click', () => this.handleClickDeleteCard());
 
       cardEl.style.cssText = `
-        background: url(./foto/${item.imageName}) no-repeat;
+        background: url(./photo/${item.imageName}) no-repeat;
         background-size: 100% auto;
         overflow: hidden;
         background-position-y: center;
