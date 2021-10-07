@@ -17,7 +17,7 @@ let imageName;
 
 const storageConfig = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'public/foto');
+    cb(null, 'public/photo');
   },
   filename: (req, file, cb) => {
     if (file.originalname) {
@@ -35,11 +35,19 @@ const baseURL = path.join(__dirname, '../');
 app.use(express.static(path.join(`${baseURL}public`)));
 app.use(express.static(path.join(`${baseURL}dist`)));
 
-const dataUrl = path.resolve(baseURL, 'public', 'data', 'data.json');
-const fotoUrl = path.resolve(baseURL, 'public', 'foto');
+const dataUrl = path.resolve(baseURL, 'public', 'data');
+const photoUrl = path.resolve(baseURL, 'public', 'photo');
+
+if(!fs.existsSync(`${baseURL}public`)) {
+  fs.mkdirSync(dataUrl, { recursive: true });
+  fs.mkdirSync(photoUrl, { recursive: true });
+  fs.writeFileSync(dataUrl + "/data.json", '[]');
+}
+
+const jsonURL = path.resolve(dataUrl + "/data.json");
 
 app.get('/api/data', (req, res) => {
-  fs.readFile(dataUrl, (err, obj) => {
+  fs.readFile(jsonURL, (err, obj) => {
     if (err) {
       console.log(err.message);
       throw err;
@@ -50,7 +58,7 @@ app.get('/api/data', (req, res) => {
 });
 
 app.post('/api/data', upload.single('picture'), (req, res) => {
-  fs.readFile(dataUrl, (err, data) => {
+  fs.readFile(jsonURL, (err, data) => {
     if (err) {
       console.log(err.message);
       throw err;
@@ -64,7 +72,7 @@ app.post('/api/data', upload.single('picture'), (req, res) => {
 
       const newData = JSON.stringify([...allData, req.body]);
 
-      fs.writeFile(dataUrl, newData, (err) => {
+      fs.writeFile(jsonURL, newData, (err) => {
         if (err) {
           console.log(err.message);
           throw err;
@@ -75,7 +83,7 @@ app.post('/api/data', upload.single('picture'), (req, res) => {
 });
 
 app.delete('/api/data/:id', (req, res) => {
-  fs.readFile(dataUrl, (err, data) => {
+  fs.readFile(jsonURL, (err, data) => {
     if (err) {
       console.log(err.message);
       throw err;
@@ -84,7 +92,7 @@ app.delete('/api/data/:id', (req, res) => {
 
       const newData = jsonToArr.filter((item) => {
         if (item.id == req.params.id) {
-          fs.unlink(`${fotoUrl}/${item.imageName}`, (err) => {
+          fs.unlink(`${photoUrl}/${item.imageName}`, (err) => {
             if (err) {
               console.log(err);
             } else {
@@ -98,7 +106,7 @@ app.delete('/api/data/:id', (req, res) => {
         }
       });
 
-      fs.writeFile(dataUrl, JSON.stringify(newData), (err) => {
+      fs.writeFile(jsonURL, JSON.stringify(newData), (err) => {
         if (err) {
           console.log(err.message);
           throw err;
@@ -109,7 +117,7 @@ app.delete('/api/data/:id', (req, res) => {
 });
 
 app.put('/api/data/:id', upload.single('picture'), (req, res) => {
-  fs.readFile(dataUrl, (err, data) => {
+  fs.readFile(jsonURL, (err, data) => {
     if (err) {
       console.log(err.message);
       throw err;
@@ -125,7 +133,7 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
           }
 
           if (imageName) {
-            fs.unlink(`${fotoUrl}/${obj.imageName}`, (err) => {
+            fs.unlink(`${photoUrl}/${obj.imageName}`, (err) => {
               if (err) {
                 console.log(err);
               } else {
@@ -142,7 +150,7 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
         return obj;
       });
 
-      fs.writeFile(dataUrl, JSON.stringify(newData), (err) => {
+      fs.writeFile(jsonURL, JSON.stringify(newData), (err) => {
         if (err) {
           console.log(err.message);
           throw err;

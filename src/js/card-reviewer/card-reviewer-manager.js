@@ -30,7 +30,7 @@ class CardReviewerManager {
         </div>
         <div class="card-reviewer__main">
           <div class="card-reviewer__image">
-            <img src="./foto/${this.data.imageName}" alt="">
+            <img src="./photo/${this.data.imageName}" alt="">
           </div>
           <div class="card-reviewer__content">${this.data.content}</div>
         </div>
