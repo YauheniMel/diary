@@ -9,7 +9,6 @@ class CardReviewerManager {
 
   init() {
     document.addEventListener('show-card_reviewer', (event) => {
-      this.elem = event.detail.wrapEl;
       this.data = event.detail.data[0];
       this.renderCardReviewer();
     });
@@ -59,6 +58,7 @@ class CardReviewerManager {
     if (targetEl.dataset.action == 'delete' && wrapEl) {
       wrapEl.remove();
     } else if (targetEl.dataset.action == 'put') {
+      console.log(this.data);
       new FormPutManager(this.data);
     }
   }

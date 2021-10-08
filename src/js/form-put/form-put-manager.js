@@ -11,6 +11,8 @@ class FormPutManager {
     this.apiMethods = new ServerConnection();
     this.inputFileEl = this.formEl.querySelector('.form-put__picture');
 
+    this.handleClickButtons = this.handleClickButtons.bind(this);
+
     this.init();
   }
 
@@ -18,7 +20,6 @@ class FormPutManager {
     this.buildFormPut();
 
     this.formEl.addEventListener('submit', this.handleSubmitPutValue.bind(this));
-    this.formEl.addEventListener('click', this.handleClickButtons.bind(this));
   }
 
   buildFormPut() {
@@ -52,10 +53,12 @@ class FormPutManager {
   handleSubmitPutValue(event) {
     event.preventDefault();
 
-    new Validation(this.formEl, 'put');
+    new Validation(this.formEl, 'put', this.data.id);
+
+    this.formEl.addEventListener('click', this.handleClickButtons);
   }
 
-  handleClickButtons() {
+  async handleClickButtons(event) {
     const targetEl = event.target;
 
     const targetBtnEl = targetEl.closest('.form-put__button');
@@ -67,20 +70,22 @@ class FormPutManager {
 
       const cardIdValue = this.cardRevierEl.getAttribute('id');
 
-      this.apiMethods.getData()
-        .then((response) => response.json())
-        .then((data) => data.filter((obj) => obj.id == cardIdValue))
-        .then((currentData) => {
-          document.dispatchEvent(new CustomEvent('show-card_reviewer', {
-            detail: {
-              data: currentData,
-            },
-          }));
-        })
-        .catch((err) => console.log(err));
+
+      const result = await this.apiMethods.getData();
+
+      const targetData = await result.filter(item => item.id == cardIdValue);
+
+      console.log(targetData);
+
+      document.dispatchEvent(new CustomEvent('show-card_reviewer', {
+        detail: {
+          data: targetData,
+        },
+      }));
 
       document.removeEventListener('click', this.handleClickButtons);
     } else if (targetBtnEl.dataset.action == 'cancel') {
+
       this.formEl.classList.add('hide');
     }
   }
