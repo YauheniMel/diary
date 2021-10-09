@@ -2,10 +2,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
-const http = require('http');
-
-http.globalAgent.maxSockets = 100;
-http.Agent.maxSockets = 100;
 
 const port = 3000;
 
@@ -44,7 +40,7 @@ if (!fs.existsSync(`${baseURL}public`)) {
   fs.writeFileSync(`${dataUrl}/data.json`, '[]');
 }
 
-const jsonURL = path.resolve(`${dataUrl}/data.json`);
+const jsonURL = `${dataUrl}/data.json`;
 
 app.get('/api/data', (req, res) => {
   fs.readFile(jsonURL, (err, obj) => {
@@ -137,7 +133,7 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
               if (err) {
                 console.log(err);
               } else {
-                console.log(`File ${obj.imageName} was deleted!...`);
+                console.log(`File ${obj.imageName} was update!...`);
               }
             });
 

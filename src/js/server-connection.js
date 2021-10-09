@@ -5,10 +5,15 @@ class ServerConnection {
     this.id = id;
     this.form = form;
 
+    this.getData = this.getData.bind(this);
+    this.postData = this.postData.bind(this);
+    this.delData = this.delData.bind(this);
+    this.putData = this.putData.bind(this);
+
     this.init();
   }
 
-  init() {
+  async init() {
     if (this.command == 'delete') {
       this.delData(this.id);
     } else if (this.command == 'post') {
@@ -18,8 +23,11 @@ class ServerConnection {
     } else if (this.command == 'put') {
       this.formData = new FormData(this.form);
 
-      this.putData(this.id);
+      await this.putData(this.id);
     }
+
+    const result = this.getData();
+    return result;
   }
 
   async getData() {
@@ -35,16 +43,12 @@ class ServerConnection {
       method: 'POST',
       body: this.formData,
     });
-
-    return;
   }
 
   async delData(id) {
     await fetch(`api/data/${id}`, {
       method: 'DELETE',
     });
-
-    return;
   }
 
   async putData(id) {
@@ -52,8 +56,6 @@ class ServerConnection {
       method: 'PUT',
       body: this.formData,
     });
-
-    return;
   }
 }
 

@@ -1,14 +1,13 @@
 import ServerConnection from './server-connection.js';
-// import getServerValues from './get-server-values.js';
 import CardHandler from './card-elem/card-handler.js';
 
 class Validation {
   srcImgEl = '';
 
-  constructor(formEl, command) {
+  constructor(formEl, command, id = null) {
     this.formEl = formEl;
     this.command = command;
-
+    this.id = id;
     this.arrFormElements = formEl.querySelectorAll('label > input,textarea');
 
     this.init();
@@ -37,13 +36,13 @@ class Validation {
       this.showErrors(this.arrFormElements);
     } else {
       if(this.command == 'post') {
-        new ServerConnection(this.command, null, this.formEl);
+        new ServerConnection(this.command, this.id, this.formEl);
 
         this.clearFormEl();
 
         new CardHandler();
       } else if(this.command == 'put') {
-        new ServerConnection(this.command, null, this.formEl);
+        new ServerConnection(this.command, this.id, this.formEl);
       }
     }
   }
