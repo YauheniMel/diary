@@ -8,7 +8,6 @@ class Validation {
     this.formEl = formEl;
     this.command = command;
     this.id = id;
-
     this.arrFormElements = formEl.querySelectorAll('label > input,textarea');
 
     this.init();

@@ -13,7 +13,7 @@ class ServerConnection {
     this.init();
   }
 
-  init() {
+  async init() {
     if (this.command == 'delete') {
       this.delData(this.id);
     } else if (this.command == 'post') {
@@ -23,7 +23,7 @@ class ServerConnection {
     } else if (this.command == 'put') {
       this.formData = new FormData(this.form);
 
-      this.putData(this.id);
+      await this.putData(this.id);
     }
 
     const result = this.getData();
@@ -51,12 +51,8 @@ class ServerConnection {
     });
   }
 
-  putData(id) {
-    console.log(id);
-    this.formData.forEach(item => {
-      console.log(item);
-    })
-    fetch(`api/data/${id}`, {
+  async putData(id) {
+    await fetch(`api/data/${id}`, {
       method: 'PUT',
       body: this.formData,
     });

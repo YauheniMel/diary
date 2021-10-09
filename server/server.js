@@ -127,25 +127,24 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
               obj[key] = req.body[key];
             }
           }
+
+          if (imageName) {
+            fs.unlink(`${photoUrl}/${obj.imageName}`, (err) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(`File ${obj.imageName} was update!...`);
+              }
+            });
+
+            obj.imageName = imageName;
+
+            imageName = null;
+          }
         }
 
-        if (imageName) {
-          fs.unlink(`${photoUrl}/${obj.imageName}`, (err) => {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(`File ${obj.imageName} was deleted!...`);
-            }
-          });
-
-          obj.imageName = imageName;
-
-          imageName = null;
-        }
-        console.log(obj);
         return obj;
       });
-
 
       fs.writeFile(jsonURL, JSON.stringify(newData), (err) => {
         if (err) {
