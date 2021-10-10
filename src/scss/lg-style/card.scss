@@ -33,6 +33,11 @@
 
     color     : white;
     background: rgb(238, 95, 95);
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &__footer {
@@ -40,29 +45,20 @@
     height    : 60px;
     width     : 100%;
 
+    padding: 10px;
+
     position: absolute;
     bottom  : 0;
   }
 
-  &__color {
+  &__image {
     position: absolute;
-    bottom  : 5px;
-    left    : 5px;
-
-    border-radius: 50%;
-    border       : 2px solid darkgrey;
-
-    opacity: 0.2;
-
-    width      : 30px;
-    height     : 30px;
-    line-height: 60px;
-    text-align : center;
+    right: 10px;
+    bottom: 10px;
+    opacity: 0.3;
+    height: 30px;
 
     &:hover {
-      background: radial-gradient(ellipse at top, red, transparent),
-        radial-gradient(ellipse at center, green, transparent),
-        radial-gradient(ellipse at bottom, blue, transparent);
       opacity: 1;
     }
   }
