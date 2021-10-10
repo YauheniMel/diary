@@ -29,18 +29,34 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 150px;
   background-color: rgba(211, 211, 211, 0.496);
   box-shadow: 0 0 5px 1px black;
-  height: 180px;
-  overflow: hidden;
 
   &__image {
     pointer-events: none;
+    width: 250px;
+    height: 170px;
   }
 
-  &__discription {
-    padding: 0 3px;
+  &__btn {
+    position: absolute;
+
+    top  : 0;
+    right: 3px;
+
+    width : 30px;
+    height: 30px;
+
+    border       : none;
+    border-radius: 0 0 3px 3px;
+
+    color     : white;
+    background: rgb(238, 95, 95);
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
