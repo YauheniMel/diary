@@ -1,4 +1,5 @@
 import FormPutManager from '../form-put/form-put-manager';
+import CardHandler from '../card-elem/card-handler';
 
 class CardReviewerManager {
   data;
@@ -9,7 +10,6 @@ class CardReviewerManager {
 
   init() {
     document.addEventListener('show-card_reviewer', (event) => {
-      this.elem = event.detail.wrapEl;
       this.data = event.detail.data[0];
       this.renderCardReviewer();
     });
@@ -56,7 +56,9 @@ class CardReviewerManager {
 
     const wrapEl = document.querySelector('.wrap_card-reviewer');
 
-    if (targetEl.dataset.action == 'delete' && wrapEl) {
+    if (targetEl.dataset.action == 'delete') {
+      new CardHandler();
+
       wrapEl.remove();
     } else if (targetEl.dataset.action == 'put') {
       new FormPutManager(this.data);

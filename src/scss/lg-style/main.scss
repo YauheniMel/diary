@@ -2,7 +2,7 @@
   background: rgb(224, 224, 224);
 
   &__section {
-    height: 100vh;
+    min-height: 100vh;
 
     background: white;
   }
@@ -15,12 +15,59 @@
   &__wrap-card {
     padding: 0 10px;
 
-    height    : 77vh;
-
     display        : flex;
     justify-content: flex-start;
     flex-wrap      : wrap;
 
     overflow  : auto;
   }
+}
+
+.collage-item {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(211, 211, 211, 0.496);
+  box-shadow: 0 0 5px 1px black;
+
+  &__image {
+    pointer-events: none;
+    width: 250px;
+    height: 170px;
+  }
+
+  &__btn {
+    position: absolute;
+
+    top  : 0;
+    right: 3px;
+
+    width : 30px;
+    height: 30px;
+
+    border       : none;
+    border-radius: 0 0 3px 3px;
+
+    color     : white;
+    background: rgb(238, 95, 95);
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.home {
+  position: relative;
+}
+
+.hide {
+  display: none;
+}
+
+.active {
+  color: rgba(0, 0, 0, 0.598);
+  font-weight: bolder;
+  text-decoration: underline;
 }
