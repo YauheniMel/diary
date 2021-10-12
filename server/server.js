@@ -139,6 +139,8 @@ app.put('/api/data/:id', upload.single('picture'), (req, res) => {
 
             obj.imageName = imageName;
 
+            obj.id = +imageName.match(/[\d]+/gim)[0];
+
             imageName = null;
           }
         }
