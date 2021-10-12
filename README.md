@@ -3,7 +3,7 @@
 ### What do you need to start?
 *First command*
 ```
-npm run watch
+npm run build
 ```
 *Last command*
 ```
